@@ -5,16 +5,24 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Subtopic {
+public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @ManyToOne
     @JoinColumn(name = "id", nullable = false)
-    private Topic topic;
+    private Subtopic subtopic;
+
+    @OneToMany(mappedBy = "question")
+    private Set<QuestionChoice> choices = new HashSet<>();
+
+    @OneToMany(mappedBy = "question")
+    private Set<UserAnswer> userAnswers = new HashSet<>();
 }

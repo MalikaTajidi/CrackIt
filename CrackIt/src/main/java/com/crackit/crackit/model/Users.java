@@ -25,5 +25,8 @@ public class Users {
     private String profilePicture;
 
     @OneToMany(mappedBy = "user")
+    private Set<UserAnswer> userAnswers = new HashSet<>();
+
+    @OneToMany(mappedBy = "user")
     private Set<Progress> progress = new HashSet<>();
 }
