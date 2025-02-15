@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -21,4 +24,6 @@ public class Users {
     private String Password;
     private String profilePicture;
 
+    @OneToMany(mappedBy = "user")
+    private Set<Progress> progress = new HashSet<>();
 }
