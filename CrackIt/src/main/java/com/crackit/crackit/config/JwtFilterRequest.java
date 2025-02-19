@@ -38,7 +38,7 @@ public class JwtFilterRequest extends OncePerRequestFilter {
 
         String requestURI = request.getRequestURI();
         // Exclude specific endpoints
-        if (requestURI.equals("/auth/login") || requestURI.equals("/auth/register")) {
+        if (requestURI.equals("/login") || requestURI.equals("/register")) {
             chain.doFilter(request, response);
             return;
         }
@@ -48,11 +48,11 @@ public class JwtFilterRequest extends OncePerRequestFilter {
         String email = null;
 
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
-            jwt = authorizationHeader.substring(7);
+            jwt = authorizationHeader.substring(7); //removes "Bearer " from the header
             try {
                 email = jwtUtil.extractEmail(jwt);
             } catch (JwtException | IllegalArgumentException e) {
-                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED); // 401 Unauthorized
                 logger.warn("Invalid JWT token: {}", e.getMessage());
                 return;
             }
