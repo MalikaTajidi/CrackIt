@@ -7,7 +7,9 @@ import com.crackit.crackit.model.User;
 import com.crackit.crackit.repository.UserRepository;
 import com.crackit.crackit.service.ServiceInterfaces.UserService;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UserServiceImp implements UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;

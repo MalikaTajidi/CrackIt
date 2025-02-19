@@ -1,6 +1,8 @@
 package com.crackit.crackit.dto;
 
+
 import lombok.Data;
+
 
 @Data
 public class RegisterDTO {
