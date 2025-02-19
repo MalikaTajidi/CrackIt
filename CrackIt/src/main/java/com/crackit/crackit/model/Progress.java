@@ -15,7 +15,7 @@ public class Progress {
     private int id;
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private Users user;
+    private User user;
 
     private int questionsAttempted;
     private int questionsCorrect;

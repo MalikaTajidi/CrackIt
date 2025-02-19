@@ -20,7 +20,7 @@ public class Question {
     private String correctAnswer;
     private String explanation;
     @ManyToOne
-    @JoinColumn(name = "id", nullable = false)
+    @JoinColumn(name = "subtopic_id", nullable = false)
     private Subtopic subtopic;
 
     @OneToMany(mappedBy = "question")

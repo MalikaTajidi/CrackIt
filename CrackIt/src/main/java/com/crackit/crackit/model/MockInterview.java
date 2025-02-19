@@ -18,11 +18,11 @@ public class MockInterview {
     private int id;
     @ManyToOne
     @JoinColumn(name = "requester_id")
-    private Users requester;
+    private User requester;
 
     @ManyToOne
     @JoinColumn(name = "invitee_id")
-    private Users invitee;
+    private User invitee;
 
     private LocalDateTime scheduledTime;
 
