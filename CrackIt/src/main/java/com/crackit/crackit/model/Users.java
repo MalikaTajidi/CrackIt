@@ -16,12 +16,12 @@ public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String FirstName;
-    private String LastName;
+    private String firstName;
+    private String lastName;
     @Column(nullable = false,unique=true)
-    private String Email;
+    private String email;
     @Column(nullable = false)
-    private String Password;
+    private String password;
     private String profilePicture;
 
     @OneToMany(mappedBy = "user")

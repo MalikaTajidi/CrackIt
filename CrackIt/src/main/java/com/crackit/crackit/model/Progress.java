@@ -14,7 +14,7 @@ public class Progress {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @ManyToOne
-    @JoinColumn(name = "id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private Users user;
 
     private int questionsAttempted;

@@ -1,9 +1,6 @@
 package com.crackit.crackit.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,4 +13,17 @@ public class UserAnswer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private Users user;
+
+    @ManyToOne
+    @JoinColumn(name = "question_id")
+    private Question question;
+
+    @ManyToOne
+    @JoinColumn(name = "selected_choice_id")
+    private QuestionChoice selectedChoice;
+
+    private boolean isCorrect;
 }

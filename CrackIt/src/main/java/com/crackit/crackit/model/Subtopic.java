@@ -14,7 +14,8 @@ public class Subtopic {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    private String subtopicName;
     @ManyToOne
-    @JoinColumn(name = "id", nullable = false)
+    @JoinColumn(name = "topic_id", nullable = false)
     private Topic topic;
 }

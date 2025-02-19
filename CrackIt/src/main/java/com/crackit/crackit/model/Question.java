@@ -16,6 +16,9 @@ public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    private String questionText;
+    private String correctAnswer;
+    private String explanation;
     @ManyToOne
     @JoinColumn(name = "id", nullable = false)
     private Subtopic subtopic;
