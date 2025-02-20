@@ -24,15 +24,15 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Component
-public class JwtFilterRequest extends OncePerRequestFilter {
+public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-    private static final Logger logger = LoggerFactory.getLogger(JwtFilterRequest.class);
+    private static final Logger logger = LoggerFactory.getLogger(JwtAuthenticationFilter.class);
 
     private final JwtUtil jwtUtil;
     
     private final CustomUserDetailsService userDetailsService;
     
-    public JwtFilterRequest(JwtUtil jwtUtil, //@Autowired(required = false) 
+    public JwtAuthenticationFilter(JwtUtil jwtUtil, //@Autowired(required = false) 
     CustomUserDetailsService userDetailsService) {
         this.jwtUtil = jwtUtil;
         this.userDetailsService = userDetailsService;

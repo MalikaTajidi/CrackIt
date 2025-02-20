@@ -24,15 +24,15 @@ public class SecurityConfig {
 
     private static final String[] PUBLIC_ENDPOINTS = { "/register", "/login", "/test/**" };
 
-    private final JwtFilterRequest jwtRequestFilter;
+    private final JwtAuthenticationFilter jwtAuthFilter;
 
     /**
      * Constructor for dependency injection of JwtRequestFilter.
      *
      * @param jwtRequestFilter custom filter to handle JWT token validation.
      */
-    public SecurityConfig(JwtFilterRequest jwtRequestFilter) {
-        this.jwtRequestFilter = jwtRequestFilter;
+    public SecurityConfig(JwtAuthenticationFilter jwtAuthFilter) {
+        this.jwtAuthFilter = jwtAuthFilter;
     }
 
     /**
@@ -50,7 +50,7 @@ public class SecurityConfig {
                         .requestMatchers(PUBLIC_ENDPOINTS).permitAll() // Allows public access to specified endpoints
                         .anyRequest().authenticated() // Requires authentication for all other endpoints
                 )
-                .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class); // Adds JWT filter before default authentication
+                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class); // Adds JWT filter before default authentication
 
         return http.build();
     }
