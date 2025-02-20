@@ -5,6 +5,8 @@ package com.crackit.crackit.config;
 import io.jsonwebtoken.JwtException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,6 +14,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+
+import com.crackit.crackit.service.ServiceImp.CustomUserDetailsService;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -25,9 +29,11 @@ public class JwtFilterRequest extends OncePerRequestFilter {
     private static final Logger logger = LoggerFactory.getLogger(JwtFilterRequest.class);
 
     private final JwtUtil jwtUtil;
-    private final UserDetailsService userDetailsService;
-
-    public JwtFilterRequest(JwtUtil jwtUtil, UserDetailsService userDetailsService) {
+    
+    private final CustomUserDetailsService userDetailsService;
+    
+    public JwtFilterRequest(JwtUtil jwtUtil, //@Autowired(required = false) 
+    CustomUserDetailsService userDetailsService) {
         this.jwtUtil = jwtUtil;
         this.userDetailsService = userDetailsService;
     }

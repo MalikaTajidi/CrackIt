@@ -15,18 +15,17 @@ import java.util.Date;
 @Component
 public class JwtUtil {
 
-    @Value("${jwt.secret}")
-    private String secret; // Loaded from environment variables .env file
 
-    @Value("${jwt.expiration}")
-    private long expirationTime; // Loaded in milliseconds
+    //@Value("${jwt.expiration:36000000}")
+    private static final  long expirationTime = 36000000; // Loaded in milliseconds
 
-    private SecretKey secretKey;
+    //private SecretKey secretKey;
 
-    @PostConstruct
-    public void init() {
-        secretKey = Keys.hmacShaKeyFor(Base64.getDecoder().decode(secret));
-    }
+    //@PostConstruct
+    //public void init() {
+     //   this.secretKey = Jwts.SIG.HS256.key().build();
+   // }
+   private static final SecretKey secretKey = Jwts.SIG.HS256.key().build();
 
     /**
      * Generates a JWT token with the user's email.
@@ -38,11 +37,12 @@ public class JwtUtil {
         Date expiryDate = new Date(now.getTime() + expirationTime);
 
         return Jwts.builder()
-                .setSubject(email) // Set the email as the subject
-                .setIssuedAt(now) // Set issued date
-                .setExpiration(expiryDate) // Set expiration date
-                .signWith(secretKey, SignatureAlgorithm.HS256) // Sign with the secret key
-                .compact();
+        .subject(email) // Use subject() instead of setSubject()
+        .issuedAt(now)
+        .expiration(expiryDate)
+        .signWith(secretKey, Jwts.SIG.HS256) // Updated signing method
+        .compact();
+
     }
 
     /**
@@ -75,10 +75,11 @@ public class JwtUtil {
      */
     private Claims extractClaims(String token) {
         return Jwts.parser()
-                .setSigningKey(secretKey)
-                .build()
-                .parseClaimsJws(token)
-                .getBody();
+        .verifyWith(secretKey) // Replaces setSigningKey()
+        .build()
+        .parseSignedClaims(token)
+        .getPayload();
+
     }
 
     /**
