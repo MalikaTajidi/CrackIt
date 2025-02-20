@@ -1,6 +1,6 @@
 package com.crackit.crackit.service.ServiceImp;
 
-import com.crackit.crackit.config.JwtUtil;
+import com.crackit.crackit.config.JwtProvider;
 import com.crackit.crackit.dto.LoginDTO;
 import com.crackit.crackit.dto.RegisterDTO;
 import com.crackit.crackit.model.User;
@@ -13,12 +13,12 @@ import org.springframework.stereotype.Service;
 public class UserServiceImp implements UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-    private final JwtUtil jwtUtil;
+    private final JwtProvider jwtProvider;
 
-    public UserServiceImp(UserRepository userRepository, PasswordEncoder passwordEncoder, JwtUtil jwtUtil) {
+    public UserServiceImp(UserRepository userRepository, PasswordEncoder passwordEncoder, JwtProvider jwtProvider) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
-        this.jwtUtil = jwtUtil;
+        this.jwtProvider = jwtProvider;
     }
     @Override
     public String register(RegisterDTO request) {
@@ -44,7 +44,7 @@ public class UserServiceImp implements UserService {
             throw new IllegalArgumentException("Invalid email or password.");
         }
 
-        return jwtUtil.generateToken(user.getEmail());
+        return jwtProvider.generateToken(user.getEmail());
     }
 
 }

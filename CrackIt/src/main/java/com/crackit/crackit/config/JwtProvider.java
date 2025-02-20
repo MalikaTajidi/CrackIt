@@ -14,7 +14,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Date;
 
 @Component
-public class JwtUtil {
+public class JwtProvider {
 
 
     //@Value("${jwt.expiration:36000000}")

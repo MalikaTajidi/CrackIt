@@ -28,13 +28,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private static final Logger logger = LoggerFactory.getLogger(JwtAuthenticationFilter.class);
 
-    private final JwtUtil jwtUtil;
+    private final JwtProvider jwtProvider;
     
     private final CustomUserDetailsService userDetailsService;
     
-    public JwtAuthenticationFilter(JwtUtil jwtUtil, //@Autowired(required = false) 
+    public JwtAuthenticationFilter(JwtProvider jwtProvider, //@Autowired(required = false) 
     CustomUserDetailsService userDetailsService) {
-        this.jwtUtil = jwtUtil;
+        this.jwtProvider = jwtProvider;
         this.userDetailsService = userDetailsService;
     }
 
@@ -56,7 +56,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
             jwt = authorizationHeader.substring(7); //removes "Bearer " from the header
             try {
-                email = jwtUtil.extractEmail(jwt);
+                email = jwtProvider.extractEmail(jwt);
             } catch (JwtException | IllegalArgumentException e) {
                 response.setStatus(HttpServletResponse.SC_UNAUTHORIZED); // 401 Unauthorized
                 logger.warn("Invalid JWT token: {}", e.getMessage());
@@ -67,7 +67,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         if (email != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = userDetailsService.loadUserByUsername(email);
 
-            if (jwtUtil.validateToken(jwt, userDetails.getUsername())) {
+            if (jwtProvider.validateToken(jwt, userDetails.getUsername())) {
                 UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
                         userDetails, null, userDetails.getAuthorities());
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
