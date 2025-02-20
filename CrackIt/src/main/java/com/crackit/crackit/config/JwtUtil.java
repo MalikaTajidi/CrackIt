@@ -40,7 +40,7 @@ public class JwtUtil {
         .subject(email) // Use subject() instead of setSubject()
         .issuedAt(now)
         .expiration(expiryDate)
-        .signWith(secretKey, Jwts.SIG.HS256) // Updated signing method
+        .signWith(Jwts.SIG.HS256,secretKey) // Updated signing method
         .compact();
 
     }

@@ -34,7 +34,7 @@ public class UserServiceImp implements UserService {
         return "User registered successfully: " + user.getEmail();
     }
     @Override
-    public String authenticate(LoginDTO request) {
+    public String login(LoginDTO request) {
         User user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new IllegalArgumentException("Invalid email or password."));
 

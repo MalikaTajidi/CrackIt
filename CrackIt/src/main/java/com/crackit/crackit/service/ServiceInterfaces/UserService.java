@@ -5,5 +5,5 @@ import com.crackit.crackit.dto.RegisterDTO;
 
 public interface UserService {
     String register(RegisterDTO request);
-    String authenticate(LoginDTO request);
+    String login(LoginDTO request);
 }
