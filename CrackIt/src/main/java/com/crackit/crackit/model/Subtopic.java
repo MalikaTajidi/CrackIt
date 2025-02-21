@@ -1,5 +1,8 @@
 package com.crackit.crackit.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,5 +20,6 @@ public class Subtopic {
     private String subtopicName;
     @ManyToOne
     @JoinColumn(name = "topic_id", nullable = false)
+    @JsonBackReference
     private Topic topic;
 }
