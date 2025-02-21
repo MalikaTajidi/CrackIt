@@ -44,8 +44,7 @@ public class SecurityConfig {
      */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-                .csrf(csrf -> csrf.disable()) // CSRF is disabled for APIs using JWT
+        http.csrf(csrf -> csrf.disable()) // CSRF is disabled for APIs using JWT
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(PUBLIC_ENDPOINTS).permitAll() // Allows public access to specified endpoints
                         .anyRequest().authenticated() // Requires authentication for all other endpoints
