@@ -22,7 +22,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class SecurityConfig {
 
-    private static final String[] PUBLIC_ENDPOINTS = { "/register", "/login", "/test/**" };
+    private static final String[] PUBLIC_ENDPOINTS = { "/register", "/login", "/test/**", "/api/questions/each-subtopic" };
 
     private final JwtAuthenticationFilter jwtAuthFilter;
 
