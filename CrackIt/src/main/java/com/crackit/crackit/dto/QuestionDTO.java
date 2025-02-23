@@ -1,7 +1,5 @@
 package com.crackit.crackit.dto;
 
-import java.util.Set;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,6 +10,4 @@ import lombok.NoArgsConstructor;
 public class QuestionDTO {
     private int id;
     private String questionText;
-   // private Set<QuestionChoiceDTO> choices;
-    
 }
