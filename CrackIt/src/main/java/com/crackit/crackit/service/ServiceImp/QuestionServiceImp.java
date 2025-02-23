@@ -25,27 +25,16 @@ public class QuestionServiceImp implements QuestionService {
      }
      @Override
      public List<QuestionDTO> getQuestionsForEachSubTopic(int subTopicId) {
-    Subtopic subtopic = subtopicRepository.findById(subTopicId);
-            //.orElseThrow(() -> new RuntimeException("Subtopic not found"));
-
-    List<Question> questions = questionRepository.findBySubtopic(subtopic);
-
-    return questions.stream().map(question -> {
-        // Map choices to DTOs
-        Set<QuestionChoiceDTO> choiceDTOs = question.getChoices().stream()
-                .map(choice -> new QuestionChoiceDTO(
-                        choice.getId(),
-                        choice.getChoiceText()
-                ))
-                .collect(Collectors.toSet());
-
-        // Return QuestionDTO with choices
-        return new QuestionDTO(
-                question.getId(),
-                question.getQuestionText(),
-                choiceDTOs
-        );
-    }).collect(Collectors.toList());
+        List<Question> list = new ArrayList<>();
+        List<QuestionDTO> list2 = new ArrayList<>();
+       Subtopic subtopic = subtopicRepository.findById(subTopicId);
+        list = questionRepository.findBySubtopic(subtopic);
+        for(Question q : list){
+         QuestionDTO a = new QuestionDTO(q.getId(),q.getQuestionText());
+         list2.add(a);
+        }
+        return list2;
+    
 }
 
     

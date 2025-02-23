@@ -12,6 +12,6 @@ import lombok.NoArgsConstructor;
 public class QuestionDTO {
     private int id;
     private String questionText;
-    private Set<QuestionChoiceDTO> choices;
+   // private Set<QuestionChoiceDTO> choices;
     
 }
