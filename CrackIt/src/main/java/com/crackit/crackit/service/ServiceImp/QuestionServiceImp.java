@@ -17,8 +17,9 @@ public class QuestionServiceImp implements QuestionService{
         this.questionRepository = questionRepository;
 
     }
-
+    @Override
     public List<QuestionDTO> getQuestionsBySubtopic(int subTopicId) {
         return questionRepository.findQuestionsBySubtopicId(subTopicId);
     }
+    
 }
