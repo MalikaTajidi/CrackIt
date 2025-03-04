@@ -1,6 +1,7 @@
 package com.crackit.crackit.controller;
 
 import com.crackit.crackit.dto.UserResponseDTO;
+import com.crackit.crackit.dto.UserUpdateDTO;
 import com.crackit.crackit.mapper.UserMapper;
 import com.crackit.crackit.model.User;
 import com.crackit.crackit.service.ServiceInterfaces.UserService;
@@ -29,5 +30,11 @@ public class UserController {
 
         List<UserResponseDTO> users = userService.searchUsersByFirstNameAndLastName(firstName, lastName);
         return ResponseEntity.ok(users);
+    }
+
+    @PutMapping("/{userId}/profile")
+    public ResponseEntity<User> updateUserProfile(@PathVariable int userId, @RequestBody UserUpdateDTO userUpdateDTO) {
+        User updatedUser = userService.updateUserProfile(userId, userUpdateDTO);
+        return ResponseEntity.ok(updatedUser);
     }
 }

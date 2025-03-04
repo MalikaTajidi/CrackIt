@@ -4,11 +4,13 @@ import com.crackit.crackit.config.JwtProvider;
 import com.crackit.crackit.dto.LoginDTO;
 import com.crackit.crackit.dto.RegisterDTO;
 import com.crackit.crackit.dto.UserResponseDTO;
+import com.crackit.crackit.dto.UserUpdateDTO;
 import com.crackit.crackit.model.User;
 import com.crackit.crackit.repository.UserRepository;
 import com.crackit.crackit.service.ServiceInterfaces.UserService;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -63,6 +65,23 @@ public class UserServiceImp implements UserService {
                 ))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public User updateUserProfile(int userId, UserUpdateDTO userUpdateDTO) {
+        Optional<User> optionalUser = userRepository.findById(userId);
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            user.setFirstName(userUpdateDTO.getFirstName());
+            user.setLastName(userUpdateDTO.getLastName());
+            user.setEmail(userUpdateDTO.getEmail());
+            user.setProfilePicture(userUpdateDTO.getProfilePicture());
+
+            return userRepository.save(user);
+        } else {
+            throw new RuntimeException("User not found");
+        }
+    }
+
     }
 
 
