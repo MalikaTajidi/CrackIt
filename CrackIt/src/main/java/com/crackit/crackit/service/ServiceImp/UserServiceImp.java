@@ -6,6 +6,9 @@ import com.crackit.crackit.dto.RegisterDTO;
 import com.crackit.crackit.model.User;
 import com.crackit.crackit.repository.UserRepository;
 import com.crackit.crackit.service.ServiceInterfaces.UserService;
+
+import java.util.List;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -46,5 +49,9 @@ public class UserServiceImp implements UserService {
 
         return jwtProvider.generateToken(user.getEmail());
     }
+    @Override
+    public List<User> searchUsersByFirstNameAndLastName(String firstName, String lastName) {
+        return userRepository.findByFirstNameAndLastName(firstName, lastName);
+    }}
 
-}
+
