@@ -18,7 +18,7 @@ public class JwtProvider {
 
 
     //@Value("${jwt.expiration:36000000}")
-    private static final  long expirationTime = 36000000; // Loaded in milliseconds
+    private static final  long expirationTime = 86400000 ; // Loaded in milliseconds
 
     //private SecretKey secretKey;
 

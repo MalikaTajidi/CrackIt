@@ -36,12 +36,12 @@ public class QuestionController {
         List<QuestionChoiceDTO> choices = questionChoiceService.getChoicesByQuestionId(questionId);
         return ResponseEntity.ok(choices);
     }
-    @GetMapping("/validate")
-    public ResponseEntity<ChoiceValidationDTO> validateChoice(
-        @RequestParam int questionId,
-        @RequestParam int choiceId
-    ) {
-        ChoiceValidationDTO result = questionChoiceService.validateChoice(questionId, choiceId);
-        return ResponseEntity.ok(result);
-    }
+    // @GetMapping("/validate")
+    // public ResponseEntity<ChoiceValidationDTO> validateChoice(
+    //     @RequestParam int questionId,
+    //     @RequestParam int choiceId
+    // ) {
+    //     ChoiceValidationDTO result = questionChoiceService.validateChoice(questionId, choiceId);
+    //     return ResponseEntity.ok(result);
+    // }
 }
