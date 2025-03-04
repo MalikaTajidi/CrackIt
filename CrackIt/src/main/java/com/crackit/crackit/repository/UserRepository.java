@@ -12,6 +12,7 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, Integer> {
     Optional<User> findByEmail(String email);
     boolean existsByEmail(String email);
-    @Query("SELECT u FROM User u WHERE u.firstName LIKE %:firstName% AND u.lastName LIKE %:lastName%")
-    List<User> findByFirstNameAndLastName(String firstName, String lastName);
+   // @Query("SELECT u FROM User u WHERE u.firstName LIKE %:firstName% AND u.lastName LIKE %:lastName%")
+    //List<User> findByFirstNameAndLastName(String firstName, String lastName);
+    List<User> findByFirstNameContainingIgnoreCaseAndLastNameContainingIgnoreCase(String firstName, String lastName);
 }

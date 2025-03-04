@@ -5,6 +5,7 @@ import com.crackit.crackit.mapper.UserMapper;
 import com.crackit.crackit.model.User;
 import com.crackit.crackit.service.ServiceInterfaces.UserService;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,12 +23,11 @@ public class UserController {
 
 
     @GetMapping("/search")
-    public List<UserResponseDTO> searchUsers(@RequestParam String firstName, @RequestParam String lastName) {
-        List<User> users = userService.searchUsersByFirstNameAndLastName(firstName, lastName);
-        
-        // Mapping using MapStruct
-        return users.stream()
-                .map(UserMapper.INSTANCE::userToUserResponseDTO)
-                .collect(Collectors.toList());
+    public ResponseEntity<List<UserResponseDTO>> searchUsers(
+            @RequestParam String firstName,
+            @RequestParam String lastName) {
+
+        List<UserResponseDTO> users = userService.searchUsersByFirstNameAndLastName(firstName, lastName);
+        return ResponseEntity.ok(users);
     }
 }

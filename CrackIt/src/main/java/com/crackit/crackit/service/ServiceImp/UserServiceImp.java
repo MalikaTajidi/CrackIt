@@ -3,11 +3,13 @@ package com.crackit.crackit.service.ServiceImp;
 import com.crackit.crackit.config.JwtProvider;
 import com.crackit.crackit.dto.LoginDTO;
 import com.crackit.crackit.dto.RegisterDTO;
+import com.crackit.crackit.dto.UserResponseDTO;
 import com.crackit.crackit.model.User;
 import com.crackit.crackit.repository.UserRepository;
 import com.crackit.crackit.service.ServiceInterfaces.UserService;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -50,8 +52,18 @@ public class UserServiceImp implements UserService {
         return jwtProvider.generateToken(user.getEmail());
     }
     @Override
-    public List<User> searchUsersByFirstNameAndLastName(String firstName, String lastName) {
-        return userRepository.findByFirstNameAndLastName(firstName, lastName);
-    }}
+    public List<UserResponseDTO> searchUsersByFirstNameAndLastName(String firstName, String lastName) {
+        List<User> users = userRepository.findByFirstNameContainingIgnoreCaseAndLastNameContainingIgnoreCase(firstName, lastName);
+        return users.stream()
+                .map(user -> new UserResponseDTO(
+                        user.getFirstName(),
+                        user.getLastName(),
+                        user.getEmail(),
+                        user.getProfilePicture()
+                ))
+                .collect(Collectors.toList());
+    }
+    }
+
 
 
