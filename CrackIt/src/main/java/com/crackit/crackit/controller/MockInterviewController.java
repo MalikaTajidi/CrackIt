@@ -43,5 +43,5 @@ public class MockInterviewController {
             @RequestParam InterviewStatus status) {
         mockInterviewService.updateInterviewStatus(interviewId, status);
         return ResponseEntity.ok("Interview status updated successfully.");
-    }
+ }
 }
