@@ -105,4 +105,16 @@ public class UserServiceImpTest {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> userService.login(loginDTO));
         assertEquals("Invalid email or password.", exception.getMessage());
     }
+    @Test
+    void testLogin_InvalidPassword() {
+        // Arrange
+        LoginDTO loginDTO = new LoginDTO("john.doe@example.com", "wrongpassword");
+
+        when(userRepository.findByEmail(loginDTO.getEmail())).thenReturn(Optional.of(testUser));
+        when(passwordEncoder.matches(loginDTO.getPassword(), testUser.getPassword())).thenReturn(false);
+
+        // Act & Assert
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> userService.login(loginDTO));
+        assertEquals("Invalid email or password.", exception.getMessage());
+    }
 }
