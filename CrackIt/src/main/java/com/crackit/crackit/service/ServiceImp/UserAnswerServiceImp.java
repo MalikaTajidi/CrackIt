@@ -13,9 +13,7 @@ import com.crackit.crackit.repository.UserAnswerRepository;
 import com.crackit.crackit.repository.UserRepository;
 import com.crackit.crackit.service.ServiceInterfaces.UserAnswerService;
 
-import jakarta.transaction.Transactional;
 
-import java.util.Optional;
 
 @Service
 public class UserAnswerServiceImp implements UserAnswerService {
