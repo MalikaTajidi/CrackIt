@@ -7,6 +7,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -20,6 +21,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import com.crackit.crackit.config.JwtProvider;
 import com.crackit.crackit.dto.LoginDTO;
 import com.crackit.crackit.dto.RegisterDTO;
+import com.crackit.crackit.dto.UserResponseDTO;
+import com.crackit.crackit.dto.UserUpdateDTO;
 import com.crackit.crackit.model.User;
 import com.crackit.crackit.repository.UserRepository;
 import com.crackit.crackit.service.ServiceImp.UserServiceImp;
@@ -116,5 +119,49 @@ public class UserServiceImpTest {
         // Act & Assert
         Exception exception = assertThrows(IllegalArgumentException.class, () -> userService.login(loginDTO));
         assertEquals("Invalid email or password.", exception.getMessage());
+    }
+
+    @Test
+    void testSearchUsersByFirstNameAndLastName() {
+        // Arrange
+        when(userRepository.findByFirstNameContainingIgnoreCaseAndLastNameContainingIgnoreCase("John", "Doe"))
+                .thenReturn(List.of(testUser));
+
+        // Act
+        List<UserResponseDTO> users = userService.searchUsersByFirstNameAndLastName("John", "Doe");
+
+        // Assert
+        assertEquals(1, users.size());
+        assertEquals("John", users.get(0).getFirstName());
+    }
+
+    @Test
+    void testUpdateUserProfile_Success() {
+        // Arrange
+        UserUpdateDTO userUpdateDTO = new UserUpdateDTO("Jane", "Doe", "jane.doe@example.com", "profile.jpg");
+
+        when(userRepository.findById(1)).thenReturn(Optional.of(testUser));
+        when(userRepository.save(any(User.class))).thenReturn(testUser);
+
+        // Act
+        User updatedUser = userService.updateUserProfile(1, userUpdateDTO);
+
+        // Assert
+        assertEquals("Jane", updatedUser.getFirstName());
+        assertEquals("Doe", updatedUser.getLastName());
+        assertEquals("jane.doe@example.com", updatedUser.getEmail());
+        assertEquals("profile.jpg", updatedUser.getProfilePicture());
+    }
+
+    @Test
+    void testUpdateUserProfile_UserNotFound() {
+        // Arrange
+        UserUpdateDTO userUpdateDTO = new UserUpdateDTO("Jane", "Doe", "jane.doe@example.com", "profile.jpg");
+
+        when(userRepository.findById(2)).thenReturn(Optional.empty());
+
+        // Act & Assert
+        Exception exception = assertThrows(RuntimeException.class, () -> userService.updateUserProfile(2, userUpdateDTO));
+        assertEquals("User not found", exception.getMessage());
     }
 }
