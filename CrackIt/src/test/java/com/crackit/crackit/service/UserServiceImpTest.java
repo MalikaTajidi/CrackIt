@@ -1,10 +1,13 @@
 package com.crackit.crackit.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+
+import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,6 +18,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.crackit.crackit.config.JwtProvider;
+import com.crackit.crackit.dto.LoginDTO;
 import com.crackit.crackit.dto.RegisterDTO;
 import com.crackit.crackit.model.User;
 import com.crackit.crackit.repository.UserRepository;
@@ -61,5 +65,44 @@ public class UserServiceImpTest {
         // Assert
         assertEquals("User registered successfully: john.doe@example.com", result);
         verify(userRepository, times(1)).save(any(User.class));
+    }
+
+    @Test
+    void testRegister_EmailAlreadyExists() {
+        // Arrange
+        RegisterDTO registerDTO = new RegisterDTO("John", "Doe", "john.doe@example.com", "password123");
+
+        when(userRepository.existsByEmail(registerDTO.getEmail())).thenReturn(true);
+
+        // Act & Assert
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> userService.register(registerDTO));
+        assertEquals("Email already in use.", exception.getMessage());
+    }
+
+    @Test
+    void testLogin_Success() {
+        // Arrange
+        LoginDTO loginDTO = new LoginDTO("john.doe@example.com", "password123");
+
+        when(userRepository.findByEmail(loginDTO.getEmail())).thenReturn(Optional.of(testUser));
+        when(passwordEncoder.matches(loginDTO.getPassword(), testUser.getPassword())).thenReturn(true);
+        when(jwtProvider.generateToken(testUser.getEmail())).thenReturn("mockedToken");
+
+        // Act
+        String token = userService.login(loginDTO);
+
+        // Assert
+        assertEquals("mockedToken", token);
+    }
+    @Test
+    void testLogin_InvalidEmail() {
+        // Arrange
+        LoginDTO loginDTO = new LoginDTO("wrong.email@example.com", "password123");
+
+        when(userRepository.findByEmail(loginDTO.getEmail())).thenReturn(Optional.empty());
+
+        // Act & Assert
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> userService.login(loginDTO));
+        assertEquals("Invalid email or password.", exception.getMessage());
     }
 }
