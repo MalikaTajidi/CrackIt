@@ -24,16 +24,16 @@ public class QuestionChoiceServiceImp implements QuestionChoiceService {
                 .map(choice -> new QuestionChoiceDTO(choice.getId(), choice.getChoiceText()))
                 .collect(Collectors.toList());
     }
-    @Override
-    public ChoiceValidationDTO validateChoice(int questionId, int choiceId) {
-        QuestionChoice choice = questionChoiceRepository.findByIdAndQuestionId(choiceId, questionId);
-         return new ChoiceValidationDTO(
-                questionId,
-                choice.isCorrect(),
-                choice.getQuestion().getExplanation()
-            );
+    // @Override
+    // public ChoiceValidationDTO validateChoice(int questionId, int choiceId) {
+    //     QuestionChoice choice = questionChoiceRepository.findByIdAndQuestionId(choiceId, questionId);
+    //      return new ChoiceValidationDTO(
+    //             questionId,
+    //             choice.isCorrect(),
+    //             choice.getQuestion().getExplanation()
+    //         );
        
-    }
+    // }
 
     
 }
