@@ -120,6 +120,19 @@
     <scope>test</scope>
 </dependency>
 
+    <!-- Spring Boot Test for Web MVC -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-test-autoconfigure</artifactId>
+        <scope>test</scope>
+    </dependency>
+
+    <!-- JSON Processing for MockMvc (Serialization/Deserialization) -->
+    <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+    </dependency>
+
 
 <dependency>
     <groupId>com.google.oauth-client</groupId>
