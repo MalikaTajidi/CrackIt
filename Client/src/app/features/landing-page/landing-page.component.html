@@ -1,60 +1,117 @@
-<section class="relative bg-pink-600 text-white">
-    <div class="container mx-auto px-6 py-32 text-center">
-      <h1 class="text-4xl sm:text-5xl font-bold leading-tight">
-        CrackIt - Prepare for Your Dream Job
-      </h1>
-      <p class="mt-4 text-lg sm:text-xl">
-        Get ready for interviews with personalized quizzes, mock interviews, and real-time progress tracking.
-      </p>
-      <a href="#get-started"
-         class="mt-8 inline-block bg-white text-pink-600 font-semibold py-3 px-6 rounded-lg shadow-lg hover:bg-gray-100 transition duration-300">
-        Get Started
-      </a>
+<!-- Navigation Menu -->
+<nav class="bg-[#0a192f] fixed w-full top-0 left-0 z-10 shadow-md">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center text-white">
+        <div class="text-2xl font-bold">
+            <a href="#" class="hover:text-[#64ffda] transition-colors duration-300">CrackIt</a>
+        </div>
+        <div class="flex space-x-8">
+            <a href="#features" class="hover:text-[#64ffda] transition-colors duration-300">Features</a>
+            <a href="#testimonials" class="hover:text-[#64ffda] transition-colors duration-300">Testimonials</a>
+            <a href="#cta" class="hover:text-[#64ffda] transition-colors duration-300">Get Started</a>
+            <a href="#cta" class="hover:text-[#64ffda] transition-colors duration-300">Login</a>
+        </div>
     </div>
-  </section>
+</nav>
 
+  
+<!-- Hero Section for CrackIt -->
+<div class="hero min-h-screen bg-gradient-to-r from-[#0a192f] to-[#112240] flex items-center pt-20">
+    <div class="hero-content text-left flex-grow px-8 md:px-16">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <!-- Image Section -->
+            <div class="flex justify-center lg:justify-end">
+                <img src="video.jpg" class="h-81 w-auto shadow-lg rounded-lg" alt="CrackIt Logo" />
+            </div>
+
+            <!-- Content Section -->
+            <div class="text-white max-w-lg mx-auto" data-aos="fade-left">
+                <h1 class="text-4xl lg:text-5xl font-bold leading-tight mb-4">Ace Your Tech Interviews with CrackIt</h1>
+                <p class="text-lg mb-6">
+                    Prepare like a pro with CrackIt—get personalized quizzes, mock interviews, and insightful progress tracking. Stay ahead of the competition and boost your interview performance.
+                </p>
+                <div class="flex space-x-4">
+                    <button class="btn text-lg px-8 py-3 rounded-lg shadow-lg bg-[#64ffda] hover:bg-[#54e0c3] transition-colors duration-300" routerLink="/Create">
+                        Start Practicing
+                    </button>
+                    <button class="btn btn-outline text-lg px-8 py-3 rounded-lg border-2 border-[#ccd6f6] hover:bg-[#ccd6f6] hover:text-[#0a192f] transition-colors duration-300">
+                        Learn More
+                    </button>
+                </div>
+                <p class="text-sm mt-8">
+                    By continuing, you agree to our <a href="#" class="text-[#64ffda]">Main Services Agreement</a>, <a href="#" class="text-[#64ffda]">User Terms of Service</a>, and <a href="#" class="text-[#64ffda]">Privacy Policy</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+  
   <!-- Features Section -->
-  <section class="py-16">
-    <div class="container mx-auto text-center">
-      <h2 class="text-3xl font-bold text-gray-800">Features</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
-        <div class="bg-white p-6 rounded-lg shadow-lg">
-          <h3 class="text-2xl font-semibold text-pink-600">Quiz by Topic</h3>
-          <p class="mt-4 text-gray-700">
-            Take quizzes tailored to the most common interview topics to test and sharpen your skills.
-          </p>
+  <section id="features" class="py-16 bg-[#233554]">
+    <div class="max-w-7xl mx-auto text-center text-white">
+      <h2 class="text-3xl font-bold mb-8">Why CrackIt?</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
+        <!-- Feature 1 -->
+        <div class="flex flex-col items-center">
+          <img src="quiz.png" class="h-24 w-24 mb-4" alt="Quiz Icon">
+          <h3 class="text-xl font-semibold mb-2">Tailored Quizzes</h3>
+          <p class="text-[#ccd6f6]">Practice with quizzes that match your skill level and target job roles.</p>
         </div>
-        <div class="bg-white p-6 rounded-lg shadow-lg">
-          <h3 class="text-2xl font-semibold text-pink-600">Mock Interviews</h3>
-          <p class="mt-4 text-gray-700">
-            Simulate real interviews with timed questions and detailed feedback to help you improve.
-          </p>
+        <!-- Feature 2 -->
+        <div class="flex flex-col items-center">
+          <img src="interview.png" class="h-24 w-24 mb-4" alt="Mock Interview Icon">
+          <h3 class="text-xl font-semibold mb-2">Mock Interviews</h3>
+          <p class="text-[#ccd6f6]">Simulate real interview conditions with expert feedback.</p>
         </div>
-        <div class="bg-white p-6 rounded-lg shadow-lg">
-          <h3 class="text-2xl font-semibold text-pink-600">Progress Tracking</h3>
-          <p class="mt-4 text-gray-700">
-            Monitor your learning progress and see where you stand with easy-to-read stats and charts.
-          </p>
+        <!-- Feature 3 -->
+        <div class="flex flex-col items-center">
+          <img src="progress.png" class="h-24 w-24 mb-4" alt="Progress Icon">
+          <h3 class="text-xl font-semibold mb-2">Track Your Progress</h3>
+          <p class="text-[#ccd6f6]">Monitor your improvement with detailed progress reports.</p>
         </div>
       </div>
     </div>
   </section>
-
-  <!-- Call to Action -->
-  <section id="get-started" class="bg-pink-600 text-white py-16">
-    <div class="container mx-auto text-center">
-      <h2 class="text-3xl font-bold">Ready to Crack It?</h2>
-      <p class="mt-4 text-lg sm:text-xl">Start your journey to mastering interviews and landing your dream job today.</p>
-      <a href="/signup"
-         class="mt-8 inline-block bg-white text-pink-600 font-semibold py-3 px-6 rounded-lg shadow-lg hover:bg-gray-100 transition duration-300">
-        Sign Up Now
-      </a>
+  
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="py-16 bg-gradient-to-r from-[#112240] to-[#0a192f] text-white">
+    <div class="max-w-6xl mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-8">What Users Are Saying</h2>
+      <div class="flex flex-wrap justify-center space-x-8">
+        <!-- Testimonial 1 -->
+        <div class="w-72 p-6 bg-[#233554] text-gray-900 rounded-lg shadow-lg">
+          <p class="text-[#ccd6f6] mb-4">"CrackIt helped me build confidence and get better at interviews. The mock interviews were exactly what I needed!"</p>
+          <p class="font-semibold">John Doe</p>
+          <p class="text-sm text-[#8892b0]">Software Engineer</p>
+        </div>
+        <!-- Testimonial 2 -->
+        <div class="w-72 p-6 bg-[#233554] text-gray-900 rounded-lg shadow-lg">
+          <p class="text-[#ccd6f6] mb-4">"I was able to prepare with tailored quizzes that helped me focus on my weaknesses. Highly recommend!"</p>
+          <p class="font-semibold">Jane Smith</p>
+          <p class="text-sm text-[#8892b0]">Frontend Developer</p>
+        </div>
+      </div>
     </div>
   </section>
-
+  
+  <!-- Call-to-Action Section -->
+  <div id="cta" class="py-16 bg-[#233554] text-center text-white">
+    <h2 class="text-3xl font-bold mb-8">Ready to Get Started?</h2>
+    <p class="text-lg mb-8 text-[#ccd6f6]">Join CrackIt today and start preparing for your next tech interview with confidence.</p>
+    <button class="btn bg-[#64ffda] text-lg px-8 py-3 rounded-lg shadow-lg hover:bg-[#54e0c3] transition-colors duration-300" routerLink="/Create">
+      Start Practicing
+    </button>
+  </div>
+  
   <!-- Footer -->
-  <footer class="bg-gray-800 text-white py-6">
-    <div class="container mx-auto text-center">
-      <p>&copy; 2025 CrackIt. All rights reserved.</p>
+  <footer class="bg-[#0a192f] text-white py-8">
+    <div class="max-w-7xl mx-auto text-center">
+      <p class="text-sm">© 2025 CrackIt. All rights reserved.</p>
+      <div class="mt-4 space-x-6">
+        <a href="#" class="hover:text-[#64ffda]">Terms of Service</a>
+        <a href="#" class="hover:text-[#64ffda]">Privacy Policy</a>
+        <a href="#" class="hover:text-[#64ffda]">Contact Us</a>
+      </div>
     </div>
   </footer>
+  
