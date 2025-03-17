@@ -30,6 +30,6 @@ constructor(private router: Router) {}
 
 // Navigate to SubtopicComponent upon selecting a topic
 onTopicSelect(topicId: number) {
-  this.router.navigate(['/subtopics', topicId]);  // Update this route based on your actual routing configuration
+  this.router.navigate(['/questions', topicId]);  // Update this route based on your actual routing configuration
 }
 }

@@ -32,7 +32,6 @@ export class LoginComponent {
       if (this.loginForm.valid) {
         const loginData = this.loginForm.value;
         console.log('Login request:', loginData);
-        // backend auth service
       }
     }
 }

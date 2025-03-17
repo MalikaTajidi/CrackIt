@@ -1,0 +1,15 @@
+<div class="w-full lg:w-[250px] bg-[#1c2a3a] p-4 rounded-md">
+    <h3 class="text-lg font-semibold mb-3">Filter by Subtopic</h3>
+    <button 
+      (click)="selectSubtopic(null)"
+      class="block w-full text-left p-2 mb-2 rounded hover:bg-[#233554] transition">
+      All Subtopics
+    </button>
+    <button 
+      *ngFor="let sub of subtopics" 
+      (click)="selectSubtopic(sub.id)"
+      class="block w-full text-left p-2 mb-2 rounded hover:bg-[#233554] transition">
+      {{ sub.name }}
+    </button>
+  </div>
+  
