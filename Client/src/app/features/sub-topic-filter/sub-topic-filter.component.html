@@ -1,15 +1,29 @@
-<div class="w-full lg:w-[250px] bg-[#1c2a3a] p-4 rounded-md">
-    <h3 class="text-lg font-semibold mb-3">Filter by Subtopic</h3>
-    <button 
-      (click)="selectSubtopic(null)"
-      class="block w-full text-left p-2 mb-2 rounded hover:bg-[#233554] transition">
-      All Subtopics
-    </button>
-    <button 
+<div class="w-full lg:w-[250px] bg-[#112240] p-4 rounded-md border border-[#233554]">
+    <h3 class="text-sm font-semibold mb-4 text-[#e6f1ff]">Subdomains</h3>
+  
+    <!-- "All Subtopics" option -->
+    <label class="flex items-center space-x-2 mb-3 cursor-pointer hover:bg-[#233554] p-2 rounded-md transition">
+      <input 
+        type="checkbox" 
+        [checked]="selectSubtopic === null" 
+        (change)="selectSubtopic(null)" 
+        class="accent-[#64ffda] w-4 h-4 rounded focus:ring-0" 
+      />
+      <span class="text-[#ccd6f6]">All Subdomains</span>
+    </label>
+  
+    <!-- Dynamic Subtopics -->
+    <label 
       *ngFor="let sub of subtopics" 
-      (click)="selectSubtopic(sub.id)"
-      class="block w-full text-left p-2 mb-2 rounded hover:bg-[#233554] transition">
-      {{ sub.name }}
-    </button>
+      class="flex items-center space-x-2 mb-3 cursor-pointer hover:bg-[#233554] p-2 rounded-md transition"
+    >
+      <input 
+        type="checkbox" 
+        [checked]="selectSubtopic === sub.id" 
+        (change)="selectSubtopic(sub.id)" 
+        class="accent-[#64ffda] w-4 h-4 rounded focus:ring-0" 
+      />
+      <span class="text-[#ccd6f6]">{{ sub.name }}</span>
+    </label>
   </div>
   

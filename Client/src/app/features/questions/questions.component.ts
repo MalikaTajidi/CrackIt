@@ -25,7 +25,7 @@ export class QuestionsComponent {
   constructor(private route: ActivatedRoute) {}
 
   loadQuestions() {
-    // Replace with real service call
+   
     this.questions = [
       { id: 1, content: 'What is 2+2?', subtopicId: 1 },
       { id: 2, content: 'Define Pythagorean theorem.', subtopicId: 2 },
