@@ -1,1 +1,17 @@
-<p>question works!</p>
+<app-navbar/>
+<div class="p-4 mt-16 bg-[#0a192f]"> 
+<div class="p-4 border rounded-lg shadow-md bg-[#0a192f] text-[#e6f1ff]">
+    <h2 class="text-lg font-semibold mb-4 text-[#e6f1ff]">{{ question }}</h2>
+    <div class="space-y-2">
+      <button 
+        *ngFor="let option of options" 
+        (click)="selectOption(option)"
+        [class.bg-[#64ffda]]="selectedOption === option"
+        [class.text-[#0a192f]]="selectedOption === option"
+        class="w-full p-2 border border-[#233554] rounded-lg hover:bg-[#112240] transition text-[#e6f1ff] text-left">
+        {{ option }}
+      </button>
+    </div>
+  </div>
+  </div>
+  <app-footer/>
