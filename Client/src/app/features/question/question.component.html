@@ -1,42 +1,53 @@
 <app-navbar />
-<div class="p-4 mt-16 bg-[#0a192f]">
-  <div class="p-4 border rounded-lg shadow-md bg-[#0a192f] text-[#e6f1ff]">
-    <h2 class="text-lg font-semibold mb-4 text-[#e6f1ff]">{{ question }}</h2>
-    <div class="space-y-2">
+<div class="mb-10">question</div>
+
+<div class="p-6  bg-[#0a192f] min-h-screen">
+  <div class="p-6 border border-[#233554] rounded-2xl shadow-lg bg-[#0a192f] text-[#e6f1ff] max-w-3xl mx-auto">
+    
+    <!-- Question -->
+    <h2 class="text-2xl font-semibold mb-6 text-[#e6f1ff]">{{ question }}</h2>
+    
+    <!-- Options -->
+    <div class="space-y-3">
       <button 
         *ngFor="let option of options" 
         (click)="selectOption(option)"
-        [class.bg-[#64ffda]]="selectedOption === option"
-        [class.text-[#0a192f]]="selectedOption === option"
-        class="w-full p-2 border border-[#233554] rounded-lg hover:bg-[#112240] transition text-[#e6f1ff] text-left">
+        [ngClass]="{
+          'bg-[#64ffda] text-[#0a192f]': selectedOption === option,
+          'hover:bg-[#112240]': selectedOption !== option
+        }"
+        class="w-full px-4 py-2 border border-[#233554] rounded-lg transition-colors duration-200 text-left text-[#e6f1ff]">
         {{ option }}
       </button>
     </div>
+    
+    <!-- Navigation Buttons -->
+    <div class="flex justify-between mt-8">
+      
+      <!-- Previous -->
+      <button 
+        (click)="goToPrevious()" 
+        [disabled]="currentIndex === 0"
+        class="flex items-center gap-2 px-5 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg disabled:opacity-50 disabled:pointer-events-none hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white transition">
+        <svg class="w-4 h-4 rtl:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 14 10">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13 5H1m0 0 4 4M1 5l4-4"/>
+        </svg>
+        Previous
+      </button>
+
+      <!-- Next -->
+      <button 
+        (click)="goToNext()" 
+        [disabled]="currentIndex === questions.length - 1"
+        class="flex items-center gap-2 px-5 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg disabled:opacity-50 disabled:pointer-events-none hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white transition">
+        Next
+        <svg class="w-4 h-4 rtl:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 14 10">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+        </svg>
+      </button>
+
+    </div>
   </div>
-
-  <!-- Buttons for Next and Previous -->
-  <div class="flex mt-4">
-    <!-- Previous Button -->
-    <a href="#" (click)="goToPrevious()" 
-      [class.pointer-events-none]="currentIndex === 0"
-      class="flex items-center justify-center px-4 h-10 me-3 text-base font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-      <svg class="w-3.5 h-3.5 me-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4"/>
-      </svg>
-      Previous
-    </a>
-
-    <!-- Next Button -->
-    <a href="#" (click)="goToNext()" 
-      [class.pointer-events-none]="currentIndex === questions.length - 1"
-      class="flex items-center justify-center px-4 h-10 text-base font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-      Next
-      <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-      </svg>
-    </a>
-  </div>
-
 </div>
 
 <app-footer />
