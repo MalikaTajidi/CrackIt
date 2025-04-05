@@ -6,6 +6,7 @@ import { TopicComponent } from './features/topic/topic.component';
 import { QuestionsComponent } from './features/questions/questions.component';
 import { QuestionComponent } from './features/question/question.component';
 import { MockInterviewComponent } from './features/mock-interview/mock-interview.component';
+import { ProfileComponent } from './features/profile/profile.component';
 
 
 export const routes: Routes = [
@@ -16,5 +17,6 @@ export const routes: Routes = [
     {path: 'questions',component:QuestionsComponent},
     {path: 'question',component:QuestionComponent},
     {path: 'mock-interview',component:MockInterviewComponent},
+    {path: 'profile',component: ProfileComponent},
     
 ];
