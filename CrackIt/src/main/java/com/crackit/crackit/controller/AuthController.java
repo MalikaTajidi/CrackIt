@@ -13,20 +13,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+
 public class AuthController {
     private final UserService userService;
 
     public AuthController(UserService userService) {
         this.userService = userService;
     }
-
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/register")
     public ResponseEntity<AuthResponse> register(@Validated @RequestBody RegisterDTO request) {
         String message = userService.register(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(new AuthResponse(message));
     }
-
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(@Validated @RequestBody LoginDTO request) {
         String token = userService.login(request);

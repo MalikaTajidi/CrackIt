@@ -14,7 +14,7 @@ export class AuthService {
    login(email: string, password: string): Observable<any> {
     const loginData = { email, password }; 
     console.log(loginData);
-    return this.http.post(`${this.apiUrl}/login`, loginData, { responseType: 'json' });
+    return this.http.post(`${this.apiUrl}/login`, loginData, { headers: { 'Content-Type': 'application/json' },  responseType: 'json' });
   }
   
 }
