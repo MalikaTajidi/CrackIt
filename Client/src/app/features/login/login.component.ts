@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { AuthService } from '../../services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,18 +13,26 @@ import { BrowserModule } from '@angular/platform-browser';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent {
- 
-    loginForm: FormGroup;
+export class LoginComponent implements OnInit{
+    http: any;
+    loginForm!: FormGroup;
     showPassword = false;
   
-    constructor(private fb: FormBuilder) {
-      this.loginForm = this.fb.group({
-        email: ['', [Validators.required, Validators.email]],
-        password: ['', Validators.required],
-        rememberMe: [false],
+    constructor(private authService: AuthService, private router: Router) {
+     
+    }
+    ngOnInit(): void {
+      this.loginForm = new FormGroup({
+        email: new FormControl('', [Validators.required, Validators.email]),
+        password: new FormControl('', Validators.required),
+        rememberMe: new FormControl(false) 
+  
       });
     }
+    email: string = '';
+    password: string = '';
+    errorMessage: string = '';
+ 
   
     togglePasswordVisibility() {
       this.showPassword = !this.showPassword;
@@ -30,8 +40,26 @@ export class LoginComponent {
   
     onSubmit() {
       if (this.loginForm.valid) {
-        const loginData = this.loginForm.value;
-        console.log('Login request:', loginData);
+        const { email, password} = this.loginForm.value;
+    
+        this.authService.login(email, password).subscribe(
+          (response: any) => {
+            console.log('Connexion réussie', response);
+    
+            const token = response.accessToken; 
+            const user = response.user; 
+  
+              localStorage.setItem('authToken', token); 
+              localStorage.setItem('user', JSON.stringify(user));
+              this.router.navigate(['/topics']);
+  
+          },
+          (error: any) => {
+            console.error('connexion error : ', error);
+          }
+        );
+      } else {
+        console.log('invalid Form');
       }
     }
 }
