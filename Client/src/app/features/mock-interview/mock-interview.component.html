@@ -1,28 +1,27 @@
 <app-navbar></app-navbar>
 
-<div class="bg-gradient-to-b from-[#0a192f] to-[#112240] min-h-screen pt-28 pb-12 px-4">
-  <div class="max-w-4xl mx-auto bg-[#112240] border border-[#233554] rounded-2xl shadow-xl p-8 text-[#e6f1ff]">
-    <h2 class="text-3xl font-bold mb-8 text-center text-[#ccd6f6]">Mock Interview</h2>
+<div class="min-h-screen pt-28 pb-12 px-4 bg-gray-50">
+  <div class="max-w-3xl mx-auto bg-white border border-gray-200 rounded-2xl shadow-xl p-8 text-gray-800">
 
-    <!-- Tab Buttons -->
-    <div class="flex gap-4 mb-8">
-      <button 
-        (click)="switchTab('received')" 
+    <!-- Tabs Navigation -->
+    <div class="flex mb-6 rounded-lg overflow-hidden border border-gray-200">
+      <button
+        (click)="switchTab('received')"
+        class="flex-1 py-3 px-5 text-base font-semibold transition-all duration-300"
         [ngClass]="{
-          'bg-[#64ffda] text-[#0a192f] font-semibold': currentTab === 'received',
-          'text-[#f9f9fb] hover:bg-[#233554]': currentTab !== 'received'
-        }"
-        class="flex-1 py-3 rounded-lg border border-[#233554] transition-all duration-300">
-        Received Invitations
+          'bg-[#112240] text-white': currentTab === 'received',
+          'bg-white text-gray-700 hover:bg-indigo-50': currentTab !== 'received'
+        }">
+        Invitations Received
       </button>
-      <button 
-        (click)="switchTab('sent')" 
+      <button
+        (click)="switchTab('sent')"
+        class="flex-1 py-3 px-5 text-base font-semibold transition-all duration-300"
         [ngClass]="{
-          'bg-[#64ffda] text-[#0a192f] font-semibold': currentTab === 'sent',
-          'text-[#f9f9fb] hover:bg-[#233554]': currentTab !== 'sent'
-        }"
-        class="flex-1 py-3 rounded-lg border border-[#233554] transition-all duration-300">
-        Sent Requests
+          'bg-[#112240] text-white': currentTab === 'sent',
+          'bg-white text-gray-700 hover:bg-indigo-50': currentTab !== 'sent'
+        }">
+        Requests Sent
       </button>
     </div>
 
@@ -30,9 +29,11 @@
     <div *ngIf="currentTab === 'received'" class="space-y-6">
       <app-mock-invitations></app-mock-invitations>
     </div>
+
     <div *ngIf="currentTab === 'sent'" class="space-y-6">
       <app-mock-requests></app-mock-requests>
     </div>
+
   </div>
 </div>
 

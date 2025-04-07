@@ -7,5 +7,12 @@ module.exports = {
     extend: {},
   },
   plugins: [],
+  theme: {
+    extend: {
+      colors: {
+        navy: '#0a192f', 
+      },
+    },
+  },
 }
 
