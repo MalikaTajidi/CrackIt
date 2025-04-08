@@ -46,11 +46,11 @@ export class LoginComponent implements OnInit{
           (response: any) => {
             console.log('lets gooo', response);
     
-            const token = response.accessToken; 
-            const user = response.user; 
+            const token = response.token;
+           // const user = response.user; 
   
               localStorage.setItem('authToken', token); 
-              localStorage.setItem('user', JSON.stringify(user));
+             // localStorage.setItem('user', JSON.stringify(user));
               this.router.navigate(['/topics']);
   
           },

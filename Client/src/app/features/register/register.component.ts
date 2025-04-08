@@ -50,7 +50,6 @@ export class RegisterComponent {
           this.router.navigate(['/login']); 
         },
         (error) => {
-          alert('error');
           console.error(error);
         }
       );

@@ -20,10 +20,8 @@ export class AuthService {
   registerUser(userData: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/register`, userData);
   }
-  
-
   getToken() {
-    return localStorage.getItem('token');
+    return localStorage.getItem('authToken');
   }
   
 }
