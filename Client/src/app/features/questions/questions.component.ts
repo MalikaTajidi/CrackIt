@@ -27,22 +27,11 @@ export class QuestionsComponent {
   loadQuestions() {
    
     this.questions = [
-      { id: 1, content: 'What is 2+2?', subtopicId: 1 },
-      { id: 2, content: 'Define Pythagorean theorem.', subtopicId: 2 },
-      { id: 3, content: 'What is 2+2?', subtopicId: 1 },
-      { id: 4, content: 'Define Pythagorean theorem.', subtopicId: 2 },
-      { id: 5, content: 'What is 2+2?', subtopicId: 1 },
-      { id: 6, content: 'Define Pythagorean theorem.', subtopicId: 2 },
-      { id: 7, content: 'What is 2+2?', subtopicId: 1 },
-      { id: 8, content: 'Define Pythagorean theorem.', subtopicId: 2 },
-      { id: 9, content: 'What is 2+2?', subtopicId: 1 },
-      { id: 10, content: 'Define Pythagorean theorem.', subtopicId: 2 },
-      { id: 11, content: 'What is 2+2?', subtopicId: 1 },
-      { id: 12, content: 'Define Pythagorean theorem.', subtopicId: 2 },
-      { id: 13, content: 'What is 2+2?', subtopicId: 1 },
-      { id: 14, content: 'Define Pythagorean theorem.', subtopicId: 2 },
-      { id: 15, content: 'What is 2+2?', subtopicId: 1 },
-      { id: 16, content: 'Define Pythagorean theorem.', subtopicId: 2 }
+      { id: 1, content: 'question1', subtopicId: 1 },
+      { id: 2, content: 'question2', subtopicId: 2 },
+      { id: 3, content: 'question3', subtopicId: 1 },
+      { id: 4, content: 'question4', subtopicId: 2 },
+      { id: 5, content: 'question5', subtopicId: 1 }
     ].filter(q => !this.subtopicId || q.subtopicId === this.subtopicId);
   }
 

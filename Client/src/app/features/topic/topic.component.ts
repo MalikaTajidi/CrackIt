@@ -33,4 +33,5 @@ ngOnInit(): void {
 onTopicSelect(topicId: number) {
   this.router.navigate(['/questions', topicId]); 
 }
+
 }
