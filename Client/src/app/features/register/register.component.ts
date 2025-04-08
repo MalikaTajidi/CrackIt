@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -10,16 +12,24 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
-  registerForm: FormGroup;
+  registerForm!: FormGroup;
   showPassword = false;
 
-  constructor(private fb: FormBuilder) {
-    this.registerForm = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
-    });
+  constructor(private authService: AuthService, private router : Router) {
+  
+  }
+
+  ngOnInit() {
+    this.registerForm = new FormGroup(
+      {
+        firstName: new FormControl('', Validators.required),
+        lastName: new FormControl('', Validators.required),
+        email: new FormControl('', [Validators.required, Validators.email]),
+        password: new FormControl('', Validators.required),
+  
+      }
+    );
+    
   }
 
   togglePasswordVisibility() {
@@ -29,6 +39,22 @@ export class RegisterComponent {
   onSubmit() {
     if (this.registerForm.valid) {
       console.log('Register data:', this.registerForm.value);
+
+      const userData = {
+        ...this.registerForm.value,
+      };
+      this.authService.registerUser(userData).subscribe(
+        (response:any) => {
+          console.log('Signup successful:', response);
+
+          this.router.navigate(['/login']); 
+        },
+        (error) => {
+          alert('error');
+          console.error(error);
+        }
+      );
+    }
     }
   }
-}
+

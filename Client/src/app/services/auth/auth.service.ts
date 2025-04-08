@@ -16,5 +16,14 @@ export class AuthService {
     console.log(loginData);
     return this.http.post(`${this.apiUrl}/login`, loginData, { headers: { 'Content-Type': 'application/json' },  responseType: 'json' });
   }
+
+  registerUser(userData: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/register`, userData);
+  }
+  
+
+  getToken() {
+    return localStorage.getItem('token');
+  }
   
 }
