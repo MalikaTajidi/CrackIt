@@ -24,6 +24,7 @@ public class Topic {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String title;
+    private String description;
     @OneToMany(mappedBy = "topic", fetch = FetchType.LAZY)
     @JsonManagedReference
     private Set<Subtopic> subtopics = new HashSet<>();

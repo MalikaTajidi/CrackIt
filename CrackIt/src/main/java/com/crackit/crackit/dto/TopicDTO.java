@@ -10,5 +10,6 @@ import lombok.Data;
 public class TopicDTO {
     private int id;
     private String title;
+    private String description;
     
 }

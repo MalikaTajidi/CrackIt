@@ -25,7 +25,7 @@ public class TopicServiceImp implements TopicService{
         List<Topic> listTopics = topicRepository.findAll();
         List<TopicDTO> list = new ArrayList<>();
         for(Topic t : listTopics){
-            TopicDTO topic = new TopicDTO(t.getId(),t.getTitle());
+            TopicDTO topic = new TopicDTO(t.getId(),t.getTitle(),t.getDescription());
             list.add(topic);
           }
           return list;
